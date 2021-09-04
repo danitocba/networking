@@ -9,43 +9,43 @@ import retrofit2.http.*
 interface ApiService {
 
     @GET("posts")
-    fun getPosts(): Call<List<Post>>
+    suspend fun getPosts(): List<Post>
 
     @GET("post/{id}")
-    fun getPost(
+    suspend fun getPost(
         @Path("id") id: Int
-    ): Call<Post>
+    ): Post
 
     @GET("post/{id}/comments")
-    fun getPostComments(
+    suspend fun getPostComments(
         @Path("id") id: Int
-    ): Call<List<Comment>>
+    ): List<Comment>
 
     @GET("comments")
-    fun getComments(
+    suspend fun getComments(
         @Query("postId") postId: Int? = null
-    ): Call<List<Comment>>
+    ): List<Comment>
 
     @POST("posts")
-    fun createPost(
+    suspend fun createPost(
         @Body post: Post
-    ): Call<Post>
+    ): Post
 
     @PUT("post/{id}")
-    fun updatePost(
+    suspend fun updatePost(
         @Path("id") id: Int,
         @Body post: Post
-    ): Call<Post>
+    ): Post
 
     @PATCH("post/{id}")
-    fun modifyPostTitle(
+    suspend fun modifyPostTitle(
         @Path("id") id: Int,
         @Body body: UpdatePostTitleRequest
-    ): Call<Post>
+    ): Post
 
     @DELETE("post/{id}")
-    fun deletePost(
+    suspend fun deletePost(
         @Path("id") id: Int
-    ): Call<Unit>
+    )
 
 }
